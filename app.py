@@ -106,6 +106,15 @@ def read_examples(prefix):
 
 ai_profiles, ai_files = read_examples("ai")
 real_profiles, real_files = read_examples("real")
+st.write("현재 실행 파일:", Path(__file__).resolve())
+st.write("현재 폴더:", Path(__file__).resolve().parent)
+st.write("예시 사진 폴더:", SAMPLES.resolve())
+st.write("예시 폴더 존재 여부:", SAMPLES.exists())
+
+if SAMPLES.exists():
+    st.write("폴더 안 파일:", [
+        p.name for p in SAMPLES.iterdir()
+    ])
 
 
 # 예시 데이터 상태
