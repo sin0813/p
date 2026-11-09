@@ -1,5 +1,20 @@
+def read_examples(prefix):
+    profiles = []
+    loaded_files = []
 
-streamlit>=1.32
-numpy>=1.26
-matplotlib>=3.8
-Pillow>=10.0
+    if not SAMPLES.exists():
+        return profiles, loaded_files
+
+    for path in SAMPLES.rglob("*"):
+        if path.is_file() and path.suffix.lower() in [
+            ".jpg", ".jpeg", ".png", ".webp"
+        ]:
+            if path.stem.lower().startswith(prefix.lower()):
+                try:
+                    image = Image.open(path).convert("RGB")
+                    profiles.append(spectrum(image))
+                    loaded_files.append(path.name)
+                except Exception as e:
+                    st.warning(f"{path.name} 읽기 실패: {e}")
+
+    return profiles, loaded_files
