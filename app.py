@@ -68,7 +68,18 @@ def spectrum(image, bins=64):
 
 
 # 예시 사진 불러오기
-SAMPLES = Path(__file__).parent / "sample_images"
+BASE_DIR = Path(__file__).resolve().parent
+
+possible_paths = [
+    BASE_DIR / "sample_images",
+    BASE_DIR / "ai_photo_detector_project" / "sample_images",
+    Path("sample_images"),
+]
+
+SAMPLES = next(
+    (p for p in possible_paths if p.exists() and p.is_dir()),
+    BASE_DIR / "sample_images"
+)
 
 
 def read_examples(prefix):
