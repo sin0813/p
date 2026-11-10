@@ -146,7 +146,7 @@ if ai_profiles and real_profiles:
     ax.plot(ai_average, label="AI 사진 평균")
     ax.plot(real_average, label="실제 사진 평균")
     ax.set_xlabel("주파수 구간")
-  ax.set_ylabel("정규화된 주파수 특징")
+    ax.set_ylabel("정규화된 주파수 특징")
     ax.legend()
     ax.grid(alpha=0.3)
     st.pyplot(fig)
